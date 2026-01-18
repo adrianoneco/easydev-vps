@@ -124,6 +124,8 @@ process_docker_labels() {
         
         # Replace variable if present
         content="${content//\$\{DOMAIN\}/$DOMAIN}"
+        content="${content//\$\{IPV4\}/$IPV4}"
+        content="${content//\$\{IPV6\}/$IPV6}"
         
         echo ""
         echo -e "${BLUE}Label: $comment${NC}"
