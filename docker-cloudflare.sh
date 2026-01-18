@@ -115,7 +115,7 @@ process_docker_labels() {
         # Parse label
         local type=$(echo "$label" | grep -oP 'type=\K[^,]+')
         local name=$(echo "$label" | grep -oP 'name=\K[^,]+')
-        local content="$(echo "$content" | envsubst)"
+        local content=$(echo "$label" | grep -oP 'content=\K[^,]+')
         local proxied=$(echo "$label" | grep -oP 'proxied=\K[^,}]+' | tr '[:upper:]' '[:lower:]')
         local comment=$(echo "$label" | grep -oP 'comment=\K[^,}]+')
         
