@@ -38,7 +38,7 @@ get_existing_records() {
     curl -s -X GET "https://api.cloudflare.com/client/v4/zones/$CLOUDFLARE_ZONE_ID/dns_records?per_page=100" \
         -H "X-Auth-Email: $CLOUDFLARE_EMAIL" \
         -H "X-Auth-Key: $CLOUDFLARE_API_KEY" \
-        -H "Content-Type: application/json" | jq -r '.result[] | "\(.name)|\(.id)|\(.type)|\(.content)"'
+        -H "Content-Type: application/json" | jq -r '.result[] | "\(.name)|\(.id)|\(.type)|\(.content)"' > /dev/null 2>&1
 }
 
 # Function to create DNS record
