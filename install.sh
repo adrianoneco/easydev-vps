@@ -939,6 +939,8 @@ CREATE EXTENSION IF NOT EXISTS "vector";
 ALTER DATABASE n8n SET timezone TO 'America/Sao_Paulo';
 EOF
 
+
+docker compose up -d
 ############################################
 # FINAL
 ############################################
