@@ -187,15 +187,15 @@ function add_txt_record() {
 function auto_fix_server() {
     local IPV4=$(curl -s https://ipv4.icanhazip.com)
     local IPV6=$(curl -s https://ipv6.icanhazip.com)
-    local HOST_NAME=$1
-    echo "Auto-fixing DNS records for ${HOST_NAME}..."
+    local DOMAIN=$1
+    echo "Auto-fixing DNS records for ${DOMAIN}..."
     add_a_record "mail" "$IPV4" false
-    add_aaaa_record "$HOST_NAME" "$IPV6" true
+    add_aaaa_record "$DOMAIN" "$IPV6" true
 
-    add_cname_record "www" "$HOST_NAME" true
-    add_mx_record "$HOST_NAME" "mail.$HOST_NAME" 10
-    add_txt_record "$HOST_NAME" "v=spf1 ip4:${IPV4} include:${HOST_NAME} -all"
-    add_txt_record "_dmarc" "v=DMARC1; p=reject; sp=reject; adkim=s; aspf=s;rua=mailto:admin@${HOST_NAME}"
+    add_cname_record "www" "$DOMAIN" true
+    add_mx_record "$DOMAIN" "mail.$DOMAIN" 10
+    add_txt_record "$DOMAIN" "v=spf1 ip4:${IPV4} include:${DOMAIN} -all"
+    add_txt_record "_dmarc" "v=DMARC1; p=reject; sp=reject; adkim=s; aspf=s;rua=mailto:admin@${DOMAIN}"
     add_txt_record "*._domainkey" "v=DKIM1; k=rsa; p="
 }
 
